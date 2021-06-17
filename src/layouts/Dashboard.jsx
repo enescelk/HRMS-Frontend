@@ -1,17 +1,18 @@
 import React from 'react'
 import { Grid } from 'semantic-ui-react';
 
-import Cities from './Cities';
-import JobAdvertisement from '../pages/JobAdvertisement';
+import Citie from './Citie';
+import JobAdvertisementList from '../pages/JobAdvertisementList';
+
 export default function Dasboard() {
     return (
         <Grid>
             <Grid.Row>
                 <Grid.Column width={4}>
-                    <Cities></Cities>
+                    <Citie></Citie>
                 </Grid.Column>
                 <Grid.Column width={12}>
-                    <JobAdvertisement></JobAdvertisement>
+                    <JobAdvertisementList></JobAdvertisementList>
                 </Grid.Column>
             </Grid.Row>
         </Grid>
