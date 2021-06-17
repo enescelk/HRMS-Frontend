@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default class CitiesService{
-    getCities(){
+    getAllCities(){
         return axios.get("http://localhost:8080/api/citiess/getAll");
     }
 }

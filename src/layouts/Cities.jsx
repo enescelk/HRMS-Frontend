@@ -8,8 +8,8 @@ export default function Cities() {
 
     useEffect(() =>{
         let citiesService = new CitiesService();
-        citiesService.getCities().then(result=>setCities(result.data.data));
-    })
+        citiesService.getAllCities().then(result=>setCities(result.data.data));
+    },[])
 
     const options = cities.map(data=>({key:data.id,value:data.cityName,text:data.cityName}));
 
