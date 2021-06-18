@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { Card, Container, Button } from 'semantic-ui-react'
-import { Formik,Form } from 'formik';
+import React, { useEffect, useState } from 'react'
+import { Card,Form, Button} from 'semantic-ui-react';
 import CitieService from '../services/CitieService';
 import JobPositionService from '../services/JobPositionService';
-import JobAdvertisementService from '../services/JobAdvertisementService';
-import WorkTimeService from '../services/WorkTimeService';
 import WorkTypeService from '../services/WorkTypeService';
+import WorkTimeService from '../services/WorkTimeService';
+import JobAdvertisementService from '../services/JobAdvertisementService';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 
@@ -13,265 +12,241 @@ export default function JobAdvertisementAdd() {
 
     let jobAdvertisementService = new JobAdvertisementService();
 
-
     const [cities, setCities] = useState([]);
     const [jobPositions, setJobPositions] = useState([]);
-    const [workTimes, setWorkTimes] = useState([])
-    const [workTypes, setWorkTypes] = useState([])
+    const [workTypes, setWorkTypes] = useState([]);
+    const [workTimes, setWorkTimes] = useState([]);
 
     useEffect(() => {
+        let cityService = new CitieService();
+        cityService.getAllCities().then((result) => setCities(result.data.data));
+
         let jobPositionService = new JobPositionService();
-        jobPositionService.getAllJobPosition().then((result => setJobPositions(result.data)));
-
-        let citieService = new CitieService();
-        citieService.getAllCities().then((result => setCities(result.data.data)));
-
-        let workTimeService = new WorkTimeService();
-        workTimeService.getAllWorkTime().then(result => setWorkTimes(result.data.data));
+        jobPositionService.getAllJobPosition().then((result) => setJobPositions(result.data));
 
         let workTypeService = new WorkTypeService();
-        workTypeService.getAllWorkType().then(result => setWorkTypes(result.data.data));
-    }, [])
+        workTypeService.getAllWorkType().then((result) => setWorkTypes(result.data.data));
+           
+        let workTimesService = new WorkTimeService();
+        workTimesService.getAllWorkTime().then((result) => setWorkTimes(result.data.data));
+    }, []);
 
+    const {
 
-    const jobPositionOptions = jobPositions.map((jobPosition) => ({
-        key: jobPosition.id,
-        text: jobPosition.positionName,
-        value: jobPosition.id,
-    }))
-
-    const citieOptions = cities.map((citie) => ({
-        key: citie.id,
-        text: citie.cityName,
-        value: citie.id,
-    }));
-
-    const workTimeOptions = workTimes.map((workTime) => ({
-        key: workTime.id,
-        text: workTime.workTime,
-        value: workTime.id,
-    }));
-
-    const workTypeOptions = workTypes.map((workType) => ({
-        key: workType.id,
-        text: workType.workType,
-        value: workType.id,
-    }));
-
-
-    // const {values,errors,touched,handleSubmit,handleReset,handleChange,handleBlur,onBlur,setFieldValue,dirty,isSubmitting} = useFormik({
-    // });
-        
-
-
-
-    return ( <div>
-        <Formik        
-            initialValues= {{
+        values,
+        errors,
+        touched,
+        handleSubmit,
+        handleChange,
+        handleBlur,
+        onBlur,
+        setFieldValue,
+        dirty,
+        isSubmitting,
+    } = useFormik({
+        initialValues: {
             jobPositionId: "",
-            cityId: "",
             numberOfOpenPosition: "",
+            cityId: "",
             minSalary: "",
             maxSalary: "",
             workTypeId: "",
             workTimeId: "",
             applicationDeadline: "",
             jobDescription: "",
-          }}
-          validationSchema= {Yup.object({
-              jobPositionId: Yup.number().required("Bir pozisyon seciniz !"),
-              cityId: Yup.string().required("Bir sehir seciniz ! "),
-              numberOfOpenPosition: Yup.number().required("Acik pozisyon sayisi giriniz !"),
-              minSalary: Yup.number().required("Minimum maas giriniz !"),
-              maxSalary: Yup.number().required("Maximum maas giriniz !"),
-              workTypeId: Yup.string().required("Bir calisma turu seciniz !"),
-              workTimeId: Yup.string().required("Bir calisma zamani seciniz !"),
-              applicationDeadline: Yup.date().required("Bitis tarihini giriniz !"),
-              jobDescription: Yup.string().required("Aciklama giriniz !"),
-          })}
-          onSubmit= {(values) => {
-            values.employerId = 4;
+        },
+        validationSchema: Yup.object({
+            jobPositionId: Yup.number().required("Lutfen bir pozisyon seciniz !"),
+            cityId: Yup.number().required("Lutfen bir sehir seciniz !"),
+            numberOfOpenPosition: Yup.number().required("Lutfen acik pozisyon sayisi giriniz !"),
+            minSalary: Yup.number().required("Lutfen minimum maas belirleyiniz !"),
+            maxSalary: Yup.number().required("Lutfen maximum maas belirleyiniz !"),
+            workTypeId: Yup.number().required("Lutfen calisma turunu seciniz !"),
+            workTimeId: Yup.number().required("Lutfen calisma zamani seciniz !"),
+            applicationDeadline: Yup.date().required("Lutfen son basvuru tarihini belirleyiniz !"),
+            jobDescription: Yup.string().required("Lutfen aciklama giriniz !"),
+        }),
+        onSubmit: (values) => {
+            values.employerId = 5;
             console.log(values);
-            jobAdvertisementService
-              .add(values)
-              .then((result) => console.log(result.data.data));
-          
-        }}      
-    >
+            jobAdvertisementService.add(values).then((result) => console.log(result.data.data));        
+        
+        }
+    });
 
-                {({
-                        values,
-                        errors,
-                        touched,
-                        handleSubmit,
-                        handleChange,
-                        onBlur,
-                        handleBlur,
-                        setFieldValue,
-                        isSubmitting,
-                        dirty,
-                    }) => (
-    
-                <Form onSubmit={handleSubmit}>
-                <Container className="form">
+    return (
+        <div>
             <Card fluid>
                 <Card.Content header="İŞ İLANI YAYINLAMA"></Card.Content>
-                <Card.Content></Card.Content>
+                <Card.Content>
+                    <Form onSubmit={handleSubmit}>
                         <Form.Group widths="equal">
-                            <Form.Select
-                                id="jobPositionId"
-                                options={jobPositionOptions}
-                                label="Pozisyon"
-                                placeholder="Pozisyon Seçiniz"
-                                search
-                                selection
-                                onChange={(fieldName, data) =>
-                                    setFieldValue("jobPositionId", data.value)
+                            <Form.Input>
+                            <select
+                            id="jobPositionId"
+                            error={
+                                errors.jobPositionId &&
+                                touched.jobPositionId &&
+                                errors.jobPositionId
+                            }
+                            >
+                              <option value="Pozisyon Seciniz"></option>
+                              {
+                              jobPositions.map((data)=> {
+                                  return <option value="" key={data.id}>{data.positionName}</option>
+                              })
+                            
+                              }
+                           </select>
+                            </Form.Input>
+                            {/* <Form.Select 
+                            id="jobPositionId"
+                            name="jobPositionId"
+                            options={jobPositionOptions}
+                            value={values.jobPositionId}
+                            onChange={formik.handleChange}
+                            label="Pozisyon"
+                            placeholder="Pozisyon Seciniz"
+                            error={
+                                errors.jobPositionId &&
+                                touched.jobPositionId &&
+                                errors.jobPositionId
+                            }
+                            ></Form.Select> */}
+                            
+                            <Form.Input>
+                            <select
+                            id="cityId" 
+                            value={values.cityId}
+                            onChange={handleChange}
+                            label="Sehir"
+                            placeholder="Sehir Seciniz"
+                            error={
+                                errors.cityId &&
+                                touched.cityId &&
+                                errors.cityId
+                            }
+                            >
+                                {
+                                    cities.map((data) =>{
+                                        return <option value="" key={data.id}>{data.cityName}</option>
+                                    })
                                 }
-                                onBlur={onBlur}
-                                value={values.jobPositionId}
-                                error={
-                                    errors.obPositionId &&
-                                    touched.jobPositionId &&
-                                    errors.jobPositionId
-                                  }
-                            ></Form.Select>
-                            <Form.Select
-                                id="cityId"
-                                options={citieOptions}
-                                label="Şehir"
-                                placeholder="Şehir Seçiniz"
-                                search
-                                onChange={(fieldName, data) =>
-                                    setFieldValue("cityId", data.value)
-                                }
-                                onBlur={onBlur}
-                                value={values.cityId}
-                                selection
-                                error={
-                                    errors.obPositionId &&
-                                    touched.jobPositionId &&
-                                    errors.jobPositionId
-                                }
-                            ></Form.Select>
+                            </select>
+                            </Form.Input>
+
                         </Form.Group>
                         <Form.Group widths="equal">
                             <Form.Input
-                                id="numberOfOpenPosition"
-                                type="number"
-                                fluid
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.numberOfOpenPosition}
-                                label="Açık Pozisyon Sayısı"
-                                placeholder="Açık Pozisyon Sayısı"
-                                error={
-                                    errors.numberOfOpenPosition &&
-                                    touched.numberOfOpenPosition &&
-                                    errors.numberOfOpenPosition
-                                }
+                            id="numberOfOpenPosition"
+                            type="number"
+                            value={values.numberOfOpenPosition}
+                            onChange={handleChange}
+                            label="Acik Pozisyon Sayisi"
+                            placeholder="Acik Pozisyon Sayisi"
+                            error={
+                                errors.numberOfOpenPosition &&
+                                touched.numberOfOpenPosition &&
+                                errors.numberOfOpenPosition
+                            }
                             ></Form.Input>
                         </Form.Group>
                         <Form.Group widths="equal">
                             <Form.Input
-                                id="minSalary"
-                                type="number"
-                                fluid
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.minSalary}
-                                label="Minimum Maaş Skalası"
-                                placeholder="Minimum Maaş Skalası"
-                                error={
-                                    errors.minSalary && touched.minSalary && errors.minSalary
-                                }
+                            id="minSalary"
+                            type="number"
+                            value={values.minSalary}
+                            onChange={handleChange}
+                            label="Minimum Maas"
+                            placeholder="Minimum Maas"
+                            error={
+                                errors.minSalary && touched.minSalary && errors.minSalary
+                            }
                             ></Form.Input>
-                            <Form.Input
-                                id="maxSalary"
-                                type="number"
-                                fluid
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.maxSalary}
-                                label="Maksimum Maaş Skalası"
-                                placeholder="Maksimum Maaş Skalası"
-                                error={
-                                    errors.maxSalary && touched.maxSalary && errors.maxSalary
-                                }
+                             <Form.Input
+                            id="maxSalary"
+                            type="number"
+                            value={values.maxSalary}
+                            onChange={handleChange}
+                            label="Maximum Maas"
+                            placeholder="Maximum Maas"
+                            error={
+                                errors.maxSalary && touched.maxSalary && errors.maxSalary
+                            }
                             ></Form.Input>
                         </Form.Group>
                         <Form.Group widths="equal">
-                            <Form.Select
-                                id="workTypeId"
-                                options={workTypeOptions}
-                                label="Çalışma Türü"
-                                onChange={(fieldName, data) =>
-                                    setFieldValue("workTypeId", data.value)
+                            <Form.Input>
+                            <select
+                            id="workTypeId"
+                            value={values.workTypeId}
+                            onChange={handleChange}
+                            label="Calisma Turu"
+                            select
+                            placeholder="Calisma Turu Seciniz"
+                            error={
+                                errors.workTypeId && touched.workTypeId && errors.workTypeId
+                            }
+                            >
+                                {
+                                    workTypes.map((data) =>{
+                                        return <option value="" key={data.id}>{data.workType}</option>
+                                    })
                                 }
-                                onBlur={onBlur}
-                                value={values.workTypeId}
-                                placeholder="Çalışma Türü Seçiniz"
-                                search
-                                selection
-                                error={
-                                    errors.workTypeId && touched.workTypeId && errors.workTypeId
+                            </select>
+                            </Form.Input>
+                            <Form.Input>
+                            <select
+                            id="workTimeId"
+                            value={values.workTimeId}
+                            onChange={handleChange}
+                            label="Calisma Zamani"
+                            select
+                            placeholder="Calisma Zamani Seciniz"
+                            error={
+                                errors.workTimeId && touched.workTimeId && errors.workTimeId
+                              }
+                            >
+                                {
+                                    workTimes.map((data) =>{
+                                        return <option value="" key={data.id}>{data.workTime}</option>
+                                    })
                                 }
-                            ></Form.Select>
-                            <Form.Select
-                                id="workTimeId"
-                                options={workTimeOptions}
-                                label="Çalışma Zamanı"
-                                onChange={(fieldName, data) =>
-                                    setFieldValue("workTimeId", data.value)
-                                }
-                                onBlur={onBlur}
-                                value={values.workTimeId}
-                                placeholder="Çalışma Zamanı Seçiniz"
-                                search
-                                selection
-                                error={
-                                    errors.workTimeId && touched.workTimeId && errors.workTimeId
-                                  }
-                            ></Form.Select>
+                            </select>
+                            </Form.Input>
+                            
                         </Form.Group>
                         <Form.Group widths="equal">
                             <Form.Input
-                                id="applicationDeadline"
-                                type="date"
-                                fluid
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.deadline}
-                                label="Son Başvuru Tarihi"
-                                error={errors.applicationDeadline && touched.applicationDeadline && errors.applicationDeadline}
+                            id="applicationDeadline"
+                            type="date"
+                            onChange={handleChange}
+                            value={values.applicationDeadline}
+                            label="Son Basvuru Tarihi"
+                            error={errors.applicationDeadline && touched.applicationDeadline && errors.applicationDeadline}  
                             ></Form.Input>
                         </Form.Group>
                         <Form.Group widths="equal">
                             <Form.TextArea
-                                id="jobDescription"
-                                type="text"
-                                fluid
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.jobDescription}
-                                label="Açıklama"
-                                placeholder="Açıklama Yazınız..."
-                                error={
-                                    errors.jobDescription &&
-                                    touched.jobDescription &&
-                                    errors.jobDescription
-                                  }
+                            id="jobDescription"
+                            type="text"
+                            onChange={handleChange}
+                            value={values.jobDescription}
+                            label="Aciklama"
+                            placeholder="Aciklama Yaziniz..."
+                            error={
+                                errors.jobDescription &&
+                                touched.jobDescription &&
+                                errors.jobDescription
+                            }
                             ></Form.TextArea>
                         </Form.Group>
-                        <button type="submit" disabled={!dirty || isSubmitting} type="submit">
-                          Yayinla  
-                        </button>
-                        
-                    </Card>
-                </Container>
+                        <Button type="submit" primary>
+                            YAYINLA
+                        </Button>
                     </Form>
-                    )}
-                    </Formik>
-                    </div>
-    );
-            }
+                </Card.Content>
+            </Card>
+        </div>
+    )
+}

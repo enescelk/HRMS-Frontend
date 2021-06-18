@@ -1,35 +1,31 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Button } from 'semantic-ui-react'
 import JobAdvertisementService from '../services/JobAdvertisementService';
+import { Button, Card } from 'semantic-ui-react'
 
 export default function JobAdvertisementList() {
 
-    const [jobAdvertisement, setJobAdvertisement] = useState([])
+    const [jobAdvertisements, setjobAdvertisements] = useState([]);
 
     useEffect(() => {
         let jobAdvertisementService = new JobAdvertisementService();
-        jobAdvertisementService.getAllJobAdvertisement().then(result => setJobAdvertisement(result.data.data));
-
+        jobAdvertisementService.getAllJobAdvertisement().then((result) => setjobAdvertisements(result.data.data));
     }, [])
 
     return (
-
         <div>
             <Card.Group>
-                {
-                    jobAdvertisement.map(jobAdvertisement => (
-                        <Card fluid>
 
-                            <Card.Content key={jobAdvertisement.id}>
-                                <Card.Header floated='left'>{jobAdvertisement.employer.companyName}</Card.Header>
+                {
+                    jobAdvertisements.map(jobAdvertisement => (
+
+
+                        <Card fluid key={jobAdvertisement.id}>
+                            <Card.Content>
+                                <Card.Header>{jobAdvertisement.employer.companyName}</Card.Header>
                                 <Card.Meta>{jobAdvertisement.jobPositions.positionName}</Card.Meta>
                                 <Card.Meta>{jobAdvertisement.city.cityName}</Card.Meta>
-                                <Card.Description>
-                                    {jobAdvertisement.jobDescription}
-                                </Card.Description>
+                                <Card.Description>{jobAdvertisement.jobDescription}</Card.Description>
                             </Card.Content>
-
-
                             <Card.Content extra>
                                 <div className='ui two buttons'>
                                     <Button basic color='green'>
@@ -37,8 +33,9 @@ export default function JobAdvertisementList() {
                                     </Button>
                                 </div>
                             </Card.Content>
-
                         </Card>
+
+
                     ))
                 }
             </Card.Group>

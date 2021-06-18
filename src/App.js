@@ -3,9 +3,10 @@ import 'semantic-ui-css/semantic.min.css'
 import { Container } from 'semantic-ui-react';
 import Navi from './layouts/Navi';
 import JobAdvertisementList from './pages/JobAdvertisementList';
-import JobAdvertisementAdd from './pages/JobAdvertisementAdd';
 import { Route } from "react-router";
 import Dasboard from './layouts/Dashboard';
+import JobAdvertisementAdd from './pages/JobAdvertisementAdd';
+import Notification from './pages/Notification';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route exact path="/home" component={Dasboard}></Route>
         <Route exact path="/jobAdvertisement" component={JobAdvertisementList} />
         <Route exact path="/jobAdvertisement/add" component={JobAdvertisementAdd} />
+        <Route exact path="/jobAdvertisement/notifications" component={Notification} />
       </Container>
     </div>
   );

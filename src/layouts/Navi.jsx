@@ -22,11 +22,15 @@ export default function Navi() {
         <div>
             <Menu inverted>
                 <Container>
-                    <Menu.Item as={NavLink} to="/home"
+                    <Menu.Item as={NavLink} to="/home" icon='chess rook'
+                    
                         name='home'
                     />
                     <Menu.Item>
-                        <Input className='icon' icon='search' placeholder='Search...' />
+                     <Input className='icon' icon='search' placeholder='Search...' />
+                    </Menu.Item>
+                    <Menu.Item>
+                    <Button inverted as={NavLink} to="/jobAdvertisement/notifications">Bildirimler</Button>
                     </Menu.Item>
                     <Menu.Menu position='right'>
                         <Menu.Item>
