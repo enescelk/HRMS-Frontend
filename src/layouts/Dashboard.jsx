@@ -7,6 +7,7 @@ import JobAdvertisementList from '../pages/JobAdvertisementList';
 export default function Dasboard() {
     return (
         <Grid>
+            
             <Grid.Row>
                 <Grid.Column width={4}>
                     <Citie></Citie>
