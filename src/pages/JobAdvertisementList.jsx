@@ -24,6 +24,7 @@ export default function JobAdvertisementList() {
                                 <Card.Header>{jobAdvertisement.employer.companyName}</Card.Header>
                                 <Card.Meta>{jobAdvertisement.jobPositions.positionName}</Card.Meta>
                                 <Card.Meta>{jobAdvertisement.city.cityName}</Card.Meta>
+                                <Card.Meta>{jobAdvertisement.maxSalary} - {jobAdvertisement.minSalary}</Card.Meta>
                                 <Card.Description>{jobAdvertisement.jobDescription}</Card.Description>
                             </Card.Content>
                             <Card.Content extra>

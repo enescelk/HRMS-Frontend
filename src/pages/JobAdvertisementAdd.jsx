@@ -84,6 +84,7 @@ export default function JobAdvertisementAdd() {
                             <Form.Input>
                             <select
                             id="jobPositionId"
+                            onChange={handleChange}
                             error={
                                 errors.jobPositionId &&
                                 touched.jobPositionId &&
@@ -241,7 +242,7 @@ export default function JobAdvertisementAdd() {
                             }
                             ></Form.TextArea>
                         </Form.Group>
-                        <Button type="submit" primary>
+                        <Button type="submit" primary onClick={handleSubmit}>
                             YAYINLA
                         </Button>
                     </Form>
