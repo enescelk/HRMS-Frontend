@@ -9,6 +9,7 @@ export default function Notification() {
                         <Card.Header>Company Name</Card.Header>
                         <Card.Meta>Position Name</Card.Meta>
                         <Card.Meta>City Name</Card.Meta>
+                        <Card.Meta>Salary</Card.Meta>
                         <Card.Description>
                            Description
                         </Card.Description>

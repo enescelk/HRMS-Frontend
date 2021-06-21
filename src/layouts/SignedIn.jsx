@@ -1,7 +1,12 @@
 import React from 'react'
 import { Dropdown, Menu, Image } from 'semantic-ui-react'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SignedIn({signOut}) {
+
+    // const notify = () => toast.warning("Cikis yapildi !");
+
     return (
         <div>
             <Menu.Item>
@@ -9,7 +14,7 @@ export default function SignedIn({signOut}) {
                 <Dropdown pointing="top left" text="Enes Celik">
                     <Dropdown.Menu>
                         <Dropdown.Item text="Bilgilerim" icon="info" />
-                        <Dropdown.Item text="Cikis yap" icon="sign-out" onClick={signOut} />
+                        <Dropdown.Item text="Cikis yap" icon="sign-out" onClick={signOut}/>
                     </Dropdown.Menu>
                 </Dropdown>
             </Menu.Item>

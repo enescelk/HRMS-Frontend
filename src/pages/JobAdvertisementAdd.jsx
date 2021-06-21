@@ -242,7 +242,7 @@ export default function JobAdvertisementAdd() {
                             }
                             ></Form.TextArea>
                         </Form.Group>
-                        <Button type="submit" primary onClick={handleSubmit}>
+                        <Button type="submit" primary dirty={isSubmitting} onClick={handleSubmit}>
                             YAYINLA
                         </Button>
                     </Form>

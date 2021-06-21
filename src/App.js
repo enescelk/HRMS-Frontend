@@ -7,10 +7,12 @@ import { Route } from "react-router";
 import Dasboard from './layouts/Dashboard';
 import JobAdvertisementAdd from './pages/JobAdvertisementAdd';
 import Notification from './pages/Notification';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer position="bottom-right"></ToastContainer>
       <Navi></Navi>
       <Container className="main">
         <Route exact path="/" component={Dasboard}></Route>

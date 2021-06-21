@@ -26,6 +26,7 @@ export default function JobAdvertisementList() {
                                 <Card.Meta>{jobAdvertisement.city.cityName}</Card.Meta>
                                 <Card.Meta>{jobAdvertisement.maxSalary} - {jobAdvertisement.minSalary}</Card.Meta>
                                 <Card.Description>{jobAdvertisement.jobDescription}</Card.Description>
+                                <Button color='red'  floated="right">Sil </Button>
                             </Card.Content>
                             <Card.Content extra>
                                 <div className='ui two buttons'>
