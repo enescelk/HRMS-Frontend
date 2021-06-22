@@ -20,6 +20,7 @@ export default function Navi() {
 
     return (
         <div>
+            
             <Menu inverted>
                 <Container>
                     <Menu.Item as={NavLink} to="/home" icon='chess rook'
