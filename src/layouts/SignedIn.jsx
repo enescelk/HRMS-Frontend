@@ -5,7 +5,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function SignedIn({signOut}) {
 
-    // const notify = () => toast.warning("Cikis yapildi !");
+    // let onClick = () => onClick={signOut};
+
+
+
+    // let handleSuccessOut = () =>{
+    //     onClick()
+    //     toast.warning("Çıkış yapıldı !")
+    // }
 
     return (
         <div>
