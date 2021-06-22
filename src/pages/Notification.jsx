@@ -14,6 +14,7 @@ export default function Notification() {
                            Description
                         </Card.Description>
                     </Card.Content>
+                    
                     <Card.Content extra>
                         <div className='ui two buttons'>
                             <Button basic color='green'>

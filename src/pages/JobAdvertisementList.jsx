@@ -15,6 +15,7 @@ export default function JobAdvertisementList() {
         <div>
             <Card.Group>
 
+
                 {
                     jobAdvertisements.map(jobAdvertisement => (
 
