@@ -31,7 +31,7 @@ export default function JobAdvertisementList() {
                             <Card.Content extra>
                                 <div className='ui two buttons'>
                                     <Button basic color='green'>
-                                        View
+                                        Detay
                                     </Button>
                                 </div>
                             </Card.Content>

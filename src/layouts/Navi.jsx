@@ -24,7 +24,7 @@ export default function Navi() {
                 <Container>
                     <Menu.Item as={NavLink} to="/home" icon='chess rook'
                     
-                        name='home'
+                        name='Ana Sayfa'
                     />
                     <Menu.Item>
                      <Input className='icon' icon='search' placeholder='Search...' />
