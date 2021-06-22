@@ -5,7 +5,7 @@ import CitieService from '../services/CitieService'
 export default function Citie() {
 
     const [citie, setCitie] = useState([])
-
+    
     useEffect(() =>{
         let citieService = new CitieService();
         citieService.getAllCities().then(result=>setCitie(result.data.data));
