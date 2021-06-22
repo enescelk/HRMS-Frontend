@@ -14,6 +14,7 @@ export default function SignedIn({signOut}) {
                 <Dropdown pointing="top left" text="Enes Celik">
                     <Dropdown.Menu>
             
+            
                         <Dropdown.Item text="Bilgilerim" icon="info" />
                         <Dropdown.Item text="Cikis yap" icon="sign-out" onClick={signOut}/>
                     </Dropdown.Menu>

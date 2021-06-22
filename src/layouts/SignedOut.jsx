@@ -10,4 +10,5 @@ export default function SignedOut({signIn}) {
             </MenuItem>
         </div>
     )
+    
 }
