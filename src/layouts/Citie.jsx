@@ -16,7 +16,7 @@ export default function Citie() {
 
     return (
         <div style={{marginTop:60}}>
-            <Select placeholder="Select your country" options={options}/>
+            <Select placeholder="Şehir Seçiniz" options={options}/>
         </div>
     )
 }

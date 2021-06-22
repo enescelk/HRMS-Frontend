@@ -7,6 +7,7 @@ import { Route } from "react-router";
 import Dasboard from './layouts/Dashboard';
 import JobAdvertisementAdd from './pages/JobAdvertisementAdd';
 import Notification from './pages/Notification';
+import Footer from './layouts/Footer';
 import { ToastContainer } from 'react-toastify';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/jobAdvertisement/add" component={JobAdvertisementAdd} />
         <Route exact path="/jobAdvertisement/notifications" component={Notification} />
       </Container>
+      <Footer></Footer>
     </div>
   );
 }

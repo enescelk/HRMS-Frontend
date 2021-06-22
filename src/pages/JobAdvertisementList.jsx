@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import JobAdvertisementService from '../services/JobAdvertisementService';
-import { Button, Card } from 'semantic-ui-react'
+import { Button, Card, Icon } from 'semantic-ui-react'
 
 export default function JobAdvertisementList() {
 
@@ -25,12 +25,12 @@ export default function JobAdvertisementList() {
                                 <Card.Meta>{jobAdvertisement.city.cityName}</Card.Meta>
                                 <Card.Meta>{jobAdvertisement.maxSalary} - {jobAdvertisement.minSalary}</Card.Meta>
                                 <Card.Description>{jobAdvertisement.jobDescription}</Card.Description>
-                                <Button color='red'  floated="right">Sil </Button>
+                                {/* <Button color='red'  floated="right">Sil </Button> */}
                             </Card.Content>
                             <Card.Content extra>
                                 <div className='ui two buttons'>
                                     <Button basic color='green'>
-                                        Detay
+                                      <Icon name="info"></Icon>  Detay
                                     </Button>
                                 </div>
                             </Card.Content>

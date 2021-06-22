@@ -19,4 +19,8 @@ export default class JobAdvertisementService{
                 return err;
             });
     }
+
+    delete(id){
+        return axios.delete('http://localhost:8080/api/jobadvertisements/delete/'+id);
+    }
 }

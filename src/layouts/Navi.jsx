@@ -34,7 +34,7 @@ export default function Navi() {
                     </Menu.Item>
                     <Menu.Menu position='right'>
                         <Menu.Item>
-                            <Button inverted as={NavLink} to="/jobAdvertisement/add">Ilan ekle</Button>
+                            <Button inverted as={NavLink} to="/jobAdvertisement/add">İlan ekle</Button>
                         </Menu.Item>
                         {isAuthenticated ? <SignedIn signOut={handleSignOut} /> : <SignedOut signIn={handleSignIn} />}
 
