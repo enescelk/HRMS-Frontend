@@ -1,9 +1,9 @@
 import React from 'react'
-import { Button, Card } from 'semantic-ui-react'
+import { Button, Card,CardGroup } from 'semantic-ui-react'
 export default function Notification() {
     return (
         <div>
-            <Card.Group>
+            <CardGroup style={{marginTop:50}}>
                 <Card fluid>
                     <Card.Content>
                         <Card.Header>Company Name</Card.Header>
@@ -26,7 +26,7 @@ export default function Notification() {
                         </div>
                     </Card.Content>
                 </Card>
-            </Card.Group>
+            </CardGroup>
         </div>
     )
 }

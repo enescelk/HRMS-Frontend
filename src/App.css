@@ -1,3 +1,8 @@
 .App {
   text-align: center;
 }
+
+#btnAdd:hover{
+  background-color: skyblue;
+  transition: 0.5s;
+}

@@ -1,48 +1,63 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Segment, Grid, Container, List, Header,Icon } from 'semantic-ui-react'
+import { Segment, Grid, Container, List, Header, Divider } from 'semantic-ui-react'
 
 export default function Footer() {
     return (
-        <>
-        <div>
-            <Segment style={{ position: "static", bottom: 0, marginTop: "41.5em", width: "100%" }}
-            >
-                <Container>
+        <Segment inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em' }}>
+            <Container textAlign='center'>
+                <Grid divided inverted stackable>
+                    <Grid.Column width={3}>
+                        <Header inverted as='h4' content='Group 1' />
+                        <List link inverted>
+                            <List.Item as='a'>Link One</List.Item>
+                            <List.Item as='a'>Link Two</List.Item>
+                            <List.Item as='a'>Link Three</List.Item>
+                            <List.Item as='a'>Link Four</List.Item>
+                        </List>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                        <Header inverted as='h4' content='Group 2' />
+                        <List link inverted>
+                            <List.Item as='a'>Link One</List.Item>
+                            <List.Item as='a'>Link Two</List.Item>
+                            <List.Item as='a'>Link Three</List.Item>
+                            <List.Item as='a'>Link Four</List.Item>
+                        </List>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                        <Header inverted as='h4' content='Group 3' />
+                        <List link inverted>
+                            <List.Item as='a'>Link One</List.Item>
+                            <List.Item as='a'>Link Two</List.Item>
+                            <List.Item as='a'>Link Three</List.Item>
+                            <List.Item as='a'>Link Four</List.Item>
+                        </List>
+                    </Grid.Column>
+                    <Grid.Column width={7}>
+                        <Header inverted as='h4' content='Footer Header' />
+                        <p>
+                            Extra space for a call to action inside the footer that could help re-engage users.
+                        </p>
+                    </Grid.Column>
+                </Grid>
 
-                    <Grid divided stackable>
-                        <Grid.Row>
-                            <Grid.Column width={3}>
-                                <Header><Icon name="linkify"></Icon> Linkler</Header>
-                                <hr />
-                                <List link >
-                                    <List.Item as={Link} to="/">Ana Sayfa</List.Item>
-
-                                    <List.Item as={Link} to="/">Giris Yap</List.Item>
-
-                                    <List.Item as={Link} to="/">Kayit Ol</List.Item>
-                                </List>
-                            </Grid.Column>
-                            <Grid.Column width={4}>
-                                <Header> <Icon name="pencil alternate"></Icon> Referanslar</Header>
-                                <hr />
-                                <List link >
-                                    <List.Item as="a" href="https://www.kodlama.io">Kodlama.io</List.Item>
-                                </List>
-                            </Grid.Column>
-                            <Grid.Column width={9}>
-                                <Header> <Icon name="user"></Icon> İnsan Kaynakları Yönetimi</Header>
-                                <hr />
-                                <List link >
-                                    <List.Item>Bu internet sitesi <strong>Enes Çelik</strong> tarafindan yazılmıstır tüm hakları saklı değildir hatta hiç bir hakkı saklı degildir</List.Item>
-                                    <List.Item><p> React & ve Java Kullanılarak yazılmıstır</p></List.Item>
-                                </List>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
-                </Container>
-            </Segment>
-        </div>
-        </>
+                <Divider inverted section />
+                <List horizontal inverted divided link size='small'>
+                    <List.Item as='a' href='#'>
+                        Site Map
+                    </List.Item>
+                    <List.Item as='a' href='#'>
+                        Contact Us
+                    </List.Item>
+                    <List.Item as='a' href='#'>
+                        Terms and Conditions
+                    </List.Item>
+                    <List.Item as='a' href='#'>
+                        Privacy Policy
+                    </List.Item>
+                </List>
+            </Container>
+        </Segment>
     )
 }
