@@ -1,8 +1,8 @@
 .App {
   text-align: center;
+  background-image: url("/src/image/hrms2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-#btnAdd:hover{
-  background-color: skyblue;
-  transition: 0.5s;
-}

@@ -18,7 +18,7 @@ export default function JobAdvertisementList() {
 
     useEffect(() => {
         let jobAdvertisementService = new JobAdvertisementService();
-        jobAdvertisementService.getAllJobAdvertisement().then((result) => setjobAdvertisements(result.data.data));
+        jobAdvertisementService.getAllByIsActiveTrueJobAdvertisement().then((result) => setjobAdvertisements(result.data.data));
     }, [])
 
     return (

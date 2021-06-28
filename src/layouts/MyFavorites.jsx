@@ -2,7 +2,8 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeToFavorite } from '../store/actions/favoriteActions'
-import { Dropdown,Button } from 'semantic-ui-react'
+import { Dropdown, Button } from 'semantic-ui-react'
+import { toast } from 'react-toastify';
 
 export default function MyFavorites() {
 
@@ -12,6 +13,7 @@ export default function MyFavorites() {
 
     const handleRemoveToFavorite = (favoriteItem) => {
         dispatch(removeToFavorite(favoriteItem))
+        toast.warning("Ilan Favorilerden Silindi !")
     }
 
     console.log("ADKJAGJWDGKJHWAGG");
@@ -23,6 +25,7 @@ export default function MyFavorites() {
                     {
                         favoriteItems.map((favoriteItem) => (
                             <Dropdown.Item key={favoriteItem.jobAdvertisement?.id}>
+                                {favoriteItem.jobAdvertisement?.jobPositions.positionName}
                                 <Button onClick={() => handleRemoveToFavorite(favoriteItem)} primary>Sil</Button>
                             </Dropdown.Item>
                         ))

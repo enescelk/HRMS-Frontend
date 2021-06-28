@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Formik } from 'formik'
 import * as Yup from 'yup';
-import { Icon, Button, FormGroup, Grid, Card } from 'semantic-ui-react';
+import { Icon, Button, Grid, Card } from 'semantic-ui-react';
 import KodlamaIoTextInput from '../utilities/customFormControls/KodlamaIoTextInput';
 import KodlamaIoSelect from '../utilities/customFormControls/KodlamaIoSelect';
 import KodlamaIoTextArea from '../utilities/customFormControls/KodlamaIoTextArea';
@@ -11,6 +11,7 @@ import CitieService from '../services/CitieService'
 import JobPositionService from '../services/JobPositionService'
 import JobAdvertisementService from '../services/JobAdvertisementService';
 import '../style/JobAdvertisementAdd_btnAdd/btnAdd.css';
+import { toast } from 'react-toastify';
 
 export default function JobAdvertisementAdd() {
 
@@ -38,7 +39,7 @@ export default function JobAdvertisementAdd() {
 
     const initialValues = {
         jobDescription: "",
-        maxSalary: "",
+        maxSalary: 0,
         minSalary: 1,
         applicationDeadline: "",
         numberOfOpenPosition: 1,
@@ -58,55 +59,19 @@ export default function JobAdvertisementAdd() {
         numberOfOpenPosition: Yup.number().min(1).required("Lutfen acik pozisyon sayisi belirtiniz")
     })
 
-    function handleJobAdvertisementValue(values) {
-        return {
-            "active": false,
-            "applicationDeadline": values.applicationDeadline,
-            "city": {
-                "cityName": "string",
-                "id": values.cityId
-            },
-            "creationDate": "2021-06-26T14:38:52.942Z",
-            "employer": {
-                "companyName": "string",
-                "email": "string",
-                "id": 0,
-                "password": "string",
-                "phoneNumber": "string",
-                "webSites": "string"
-            },
-            "id": 0,
-            "jobDescription": values.jobDescription,
-            "jobPositions": {
-                "id": values.jobPositionId,
-                "positionName": "string"
-            },
-            "maxSalary": values.maxSalary,
-            "minSalary": values.minSalary,
-            "numberOfOpenPosition": values.numberOfOpenPosition,
-            "workTime": {
-                "id": values.workTimeId,
-                "workTime": "string"
-            },
-            "workType": {
-                "id": values.workTypeId,
-                "workType": "string"
-            }
-        }
-    }
-
     return (
         <Card fluid>
-            <Card.Content><Card.Header color='teal' content="Is Ilani Ekleme Formu" /><hr />
+            <Card.Content><Card.Header color='teal' content="İs İlani Ekleme Formu" /><hr />
                 <Formik
                     initialValues={initialValues}
                     validationSchema={schema}
                     onSubmit={(values) => {
                         values.employerId = 6;
-                        console.log(values)
+                        jobAdvertisementService.add(values)
+                        toast.success("HRMS Personeli'nin onayindan ilaniniz yayina alinacaktir sonra yayina alinacaktir")
                     }}
                 >
-                    <Form className="ui form" style={{ marginTop: 100 }}>
+                    <Form className="ui form">
                         <Grid>
                             <Grid.Row>
                                 <Grid.Column width={8}>
@@ -184,7 +149,7 @@ export default function JobAdvertisementAdd() {
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>
-                        <Button className="btnAdd" color="blue" type="submit" basic style={{ marginTop: 20, width: 800 }}> YAYINLA<Icon style={{ paddingLeft: 10 }} name="paper plane"></Icon></Button>
+                        <Button className="btnAdd" color="blue" type="submit" basic style={{ marginTop: 20, width: "100%" }}> YAYINLA<Icon style={{ paddingLeft: 10 }} name="paper plane"></Icon></Button>
                     </Form>
 
                 </Formik>

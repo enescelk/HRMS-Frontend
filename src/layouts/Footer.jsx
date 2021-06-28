@@ -1,19 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Segment, Grid, Container, List, Header, Divider } from 'semantic-ui-react'
+import { Segment, Grid, Container, List, Header, Divider, ListIcon } from 'semantic-ui-react'
 
 export default function Footer() {
     return (
-        <Segment inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em' }}>
+        <Segment inverted vertical style={{ margin: '5em 0em 30vh 0em', padding: '5em 0em' }}>
             <Container textAlign='center'>
                 <Grid divided inverted stackable>
                     <Grid.Column width={3}>
-                        <Header inverted as='h4' content='Group 1' />
+                        <Header inverted as='h4' content='Sosyal Medya' />
                         <List link inverted>
-                            <List.Item as='a'>Link One</List.Item>
-                            <List.Item as='a'>Link Two</List.Item>
-                            <List.Item as='a'>Link Three</List.Item>
-                            <List.Item as='a'>Link Four</List.Item>
+                            <List.Item as='a'><ListIcon name="instagram"></ListIcon> Instagram</List.Item>
+                            <List.Item as='a'><ListIcon name="twitter"></ListIcon> Twitter</List.Item>
+                            <List.Item as='a'><ListIcon name="linkedin"></ListIcon> Linkedin</List.Item>
+                            <List.Item as='a'><ListIcon name="github"></ListIcon> Github</List.Item><br />
+                            <a href="https://www.kodlama.io/" target="_blank"><List.Item as='a'>Kodlama.io</List.Item></a>
                         </List>
                     </Grid.Column>
                     <Grid.Column width={3}>
@@ -35,9 +36,9 @@ export default function Footer() {
                         </List>
                     </Grid.Column>
                     <Grid.Column width={7}>
-                        <Header inverted as='h4' content='Footer Header' />
+                        <Header inverted as='h4' content='Insan Kaynaklari Yonetimi' />
                         <p>
-                            Extra space for a call to action inside the footer that could help re-engage users.
+                            Bu site <strong>Enes Celik</strong> tarafindan yazilmistir tum kodlari public sourcedur.
                         </p>
                     </Grid.Column>
                 </Grid>
