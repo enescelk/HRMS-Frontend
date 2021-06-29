@@ -10,7 +10,7 @@ import WorkTypeService from '../services/WorkTypeService'
 import CitieService from '../services/CitieService'
 import JobPositionService from '../services/JobPositionService'
 import JobAdvertisementService from '../services/JobAdvertisementService';
-import '../style/JobAdvertisementAdd_btnAdd/btnAdd.css';
+import './style.css';
 import { toast } from 'react-toastify';
 
 export default function JobAdvertisementAdd() {

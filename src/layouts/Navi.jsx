@@ -31,20 +31,17 @@ export default function Navi() {
 
                         name='Ana Sayfa'
                     />
-                    <Menu.Item>
-                        <Input className='icon' icon='search' placeholder='Search...' />
-                    </Menu.Item>
 
                     <Menu.Item>
                         <Button inverted as={NavLink} to="/jobAdvertisement/notifications">Bildirimler</Button>
-                    </Menu.Item>   
+                    </Menu.Item>
 
                     <Menu.Item>
                         <Button inverted as={NavLink} to="/jobAdvertisement/add">İlan ekle</Button>
                     </Menu.Item>
 
                     <Menu.Item>
-                        {favoriteItems.length>0&&<MyFavorites/>}
+                        {favoriteItems.length > 0 && <MyFavorites />}
                     </Menu.Item>
 
                     <Menu.Menu position='right'>
